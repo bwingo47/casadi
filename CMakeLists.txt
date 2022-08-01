@@ -215,14 +215,16 @@ endif()
 option(WITH_COMMON "Build common, stable interfaces, if found" OFF)
 if(WITH_COMMON)
   # Look for LAPACK
-  find_package(LAPACK QUIET)
+  find_package(LAPACK)
+  message(STATUS "LAPACK found!!!!!!!!!!!.")
   set(WITH_LAPACK_DEF ${LAPACK_FOUND})
   # qpOASES and blockSQP built if LAPACK available
   set(WITH_QPOASES_DEF ${LAPACK_FOUND})
   set(WITH_BLOCKSQP_DEF ${LAPACK_FOUND})
   set(WITH_SUPERSCS_DEF ${LAPACK_FOUND})
   # Look for IPOPT
-  find_package(IPOPT QUIET)
+  find_package(IPOPT)
+  message(STATUS "IPOPT found!!!!!!!!!!!.")
   set(WITH_IPOPT_DEF ${IPOPT_FOUND})
 else()
   # Disabled by default
