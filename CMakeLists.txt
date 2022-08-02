@@ -303,11 +303,11 @@ endif()
 # Have an so version?
 option(WITH_SO_VERSION "Use an so version for the library (version suffix) when applicable" ON)
 
-# set(WITH_COPYSIGN_UNDEF_DEFAULT OFF)
-# if(WITH_PYTHON AND MSVC)
-#   set(WITH_COPYSIGN_UNDEF_DEFAULT OFF)
-# endif()
-# option(WITH_COPYSIGN_UNDEF "On Windows, in Python.h #defines copysign to be _copysign. This option inserts an #undef" WITH_COPYSIGN_UNDEF_DEFAULT)
+set(WITH_COPYSIGN_UNDEF_DEFAULT OFF)
+if(WITH_PYTHON AND MSVC)
+  set(WITH_COPYSIGN_UNDEF_DEFAULT OFF)
+endif()
+option(WITH_COPYSIGN_UNDEF "On Windows, in Python.h #defines copysign to be _copysign. This option inserts an #undef" WITH_COPYSIGN_UNDEF_DEFAULT)
 
 ############################################################
 ################# Installation location ####################
