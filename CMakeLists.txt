@@ -913,8 +913,13 @@ install(FILES
 message(STATUS "#################Installed Configuration for Pkgconfig###################")
 
 # Install the export set for use with the install-tree
-file(RELATIVE_PATH REL_CMAKE_PREFIX "${CMAKE_INSTALL_PREFIX}" "${CMAKE_PREFIX}")
-install(EXPORT casadi-targets DESTINATION ${REL_CMAKE_PREFIX})
+
+# file(RELATIVE_PATH REL_CMAKE_PREFIX "${CMAKE_INSTALL_PREFIX}" "${CMAKE_PREFIX}")
+# install(EXPORT casadi-targets DESTINATION ${REL_CMAKE_PREFIX})
+
+##########################################################################
+install(EXPORT casadi-targets DESTINATION "${CMAKE_PREFIX}" COMPONENT dev)
+##########################################################################
 
 set(CPACK_PACKAGE_CONTACT "casadi-users@googlegroups.com")
 set(CPACK_PACKAGE_VERSION ${PACKAGE_VERSION_FULL})
