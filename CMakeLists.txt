@@ -303,11 +303,11 @@ endif()
 # Have an so version?
 option(WITH_SO_VERSION "Use an so version for the library (version suffix) when applicable" ON)
 
-set(WITH_COPYSIGN_UNDEF_DEFAULT OFF)
-if(WITH_PYTHON AND MSVC)
-  set(WITH_COPYSIGN_UNDEF_DEFAULT OFF)
-endif()
-option(WITH_COPYSIGN_UNDEF "On Windows, in Python.h #defines copysign to be _copysign. This option inserts an #undef" WITH_COPYSIGN_UNDEF_DEFAULT)
+# set(WITH_COPYSIGN_UNDEF_DEFAULT OFF)
+# if(WITH_PYTHON AND MSVC)
+#   set(WITH_COPYSIGN_UNDEF_DEFAULT OFF)
+# endif()
+# option(WITH_COPYSIGN_UNDEF "On Windows, in Python.h #defines copysign to be _copysign. This option inserts an #undef" WITH_COPYSIGN_UNDEF_DEFAULT)
 
 ############################################################
 ################# Installation location ####################
@@ -564,9 +564,9 @@ if(WITH_HPMPC)
 endif()
 add_feature_info(hpmpc-interface WITH_HPMPC "Interface to hpmpc.")
 
-# SuperSCS: An conic solver
-option(WITH_SUPERSCS "Compile the interface to SuperSCS (the source code for SuperSCS is included)" ${WITH_SUPERSCS_DEF})
-add_feature_info(superscs-interface WITH_SUPERSCS "Interface to Conic solver SuperSCS.")
+# # SuperSCS: An conic solver
+# option(WITH_SUPERSCS "Compile the interface to SuperSCS (the source code for SuperSCS is included)" ${WITH_SUPERSCS_DEF})
+# add_feature_info(superscs-interface WITH_SUPERSCS "Interface to Conic solver SuperSCS.")
 
 # OSQP: An operator-splitting QP solver
 option(WITH_OSQP "Compile the interface to OSQP (the source code for OSQP is included)" OFF)
@@ -615,9 +615,9 @@ add_feature_info(clang-interface WITH_CLANG "Interface to the Clang JIT compiler
 option(WITH_LAPACK "Compile the interface to LAPACK" ${WITH_LAPACK_DEF})
 if(WITH_LAPACK)
   find_package(LAPACK REQUIRED)
-  if(DEFINED ENV{CASADI_EXTRA_LIBRARIES_LAPACK})
-    set(LAPACK_LIBRARIES ${LAPACK_LIBRARIES} $ENV{CASADI_EXTRA_LIBRARIES_LAPACK})
-  endif()
+  # if(DEFINED ENV{CASADI_EXTRA_LIBRARIES_LAPACK})
+  #   set(LAPACK_LIBRARIES ${LAPACK_LIBRARIES} $ENV{CASADI_EXTRA_LIBRARIES_LAPACK})
+  # endif()
 endif()
 add_feature_info(lapack-interface WITH_LAPACK "Interface to LAPACK.")
 
@@ -914,11 +914,11 @@ message(STATUS "#################Installed Configuration for Pkgconfig##########
 
 # Install the export set for use with the install-tree
 
-# file(RELATIVE_PATH REL_CMAKE_PREFIX "${CMAKE_INSTALL_PREFIX}" "${CMAKE_PREFIX}")
-# install(EXPORT casadi-targets DESTINATION ${REL_CMAKE_PREFIX})
+file(RELATIVE_PATH REL_CMAKE_PREFIX "${CMAKE_INSTALL_PREFIX}" "${CMAKE_PREFIX}")
+install(EXPORT casadi-targets DESTINATION ${REL_CMAKE_PREFIX})
 
 ##########################################################################
-install(EXPORT casadi-targets DESTINATION "${CMAKE_PREFIX}" COMPONENT dev)
+# install(EXPORT casadi-targets DESTINATION "${CMAKE_PREFIX}" COMPONENT dev)
 ##########################################################################
 
 set(CPACK_PACKAGE_CONTACT "casadi-users@googlegroups.com")
