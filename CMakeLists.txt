@@ -485,8 +485,6 @@ endif()
 
 include_directories(.)
 include_directories(${PROJECT_BINARY_DIR})
-message(STATUS "#################PROJECT_BINARY_DIR is : ${PROJECT_BINARY_DIR}###################")
-message(STATUS "#################CMAKE_BINARY_DIR is : ${CMAKE_BINARY_DIR}###################")
 
 #######################################################################
 ################# 3rd party interface #################################
@@ -870,20 +868,11 @@ export(TARGETS casadi
 export(PACKAGE CasADi)
 
 # Create casadi-config.cmake
-############################################################################
-# file(RELATIVE_PATH REL_INCLUDE_PREFIX "${CMAKE_PREFIX}" "${INCLUDE_PREFIX}")
-############################################################################
 file(RELATIVE_PATH REL_LIB_PREFIX "${CMAKE_PREFIX}" "${LIB_PREFIX}")
 # ... for the build tree
-######################################################################
-# set(CONF_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}" "${PROJECT_BINARY_DIR}")
-######################################################################
 set(CONF_LIBRARY_DIRS "${LIBRARY_OUTPUT_PATH}")
 configure_file(casadi-config.cmake.in "${PROJECT_BINARY_DIR}/casadi-config.cmake" @ONLY)
 # ... for the install tree
-###################################################################
-# set(CONF_INCLUDE_DIRS "\${CASADI_CMAKE_DIR}/${REL_INCLUDE_PREFIX}")
-###################################################################
 set(CONF_LIBRARY_DIRS "\${CASADI_CMAKE_DIR}/${REL_LIB_PREFIX}")
 configure_file(casadi-config.cmake.in
   "${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/casadi-config.cmake" @ONLY)
@@ -897,10 +886,6 @@ install(FILES
   "${PROJECT_BINARY_DIR}/casadi-config-version.cmake"
   DESTINATION "${CMAKE_PREFIX}" COMPONENT dev)
 
-
-message(STATUS "#################Start Configuration for Pkgconfig###################")
-message(STATUS "#################PROJECT_SOURCE_DIR is : ${PROJECT_SOURCE_DIR}###################")
-
 # Generate the casadi.pc.in configuration file
 configure_file(${PROJECT_SOURCE_DIR}/misc/casadi.pc.in
   "${PROJECT_BINARY_DIR}/casadi.pc" @ONLY)
@@ -910,16 +895,9 @@ install(FILES
   "${PROJECT_BINARY_DIR}/casadi.pc"
   DESTINATION "${LIB_PREFIX}/pkgconfig" COMPONENT dev)
 
-message(STATUS "#################Installed Configuration for Pkgconfig###################")
-
 # Install the export set for use with the install-tree
-
 file(RELATIVE_PATH REL_CMAKE_PREFIX "${CMAKE_INSTALL_PREFIX}" "${CMAKE_PREFIX}")
 install(EXPORT casadi-targets DESTINATION ${REL_CMAKE_PREFIX})
-
-##########################################################################
-# install(EXPORT casadi-targets DESTINATION "${CMAKE_PREFIX}" COMPONENT dev)
-##########################################################################
 
 set(CPACK_PACKAGE_CONTACT "casadi-users@googlegroups.com")
 set(CPACK_PACKAGE_VERSION ${PACKAGE_VERSION_FULL})
